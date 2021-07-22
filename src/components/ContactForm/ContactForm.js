@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import shortid from "shortid";
 import PropTypes from "prop-types";
+import { existedContactError } from "../../ulits/pnotify";
 
 class ContactForm extends Component {
   static propTypes = {
@@ -33,10 +34,10 @@ class ContactForm extends Component {
   handleSubmit = (evt) => {
     evt.preventDefault();
 
-    const { name } = this.state;
+    const { name, number } = this.state;
 
     if (this.findByName(name)) {
-      alert(`${name} is already in contacts!`);
+      existedContactError(name, number);
       return;
     }
 
@@ -62,7 +63,7 @@ class ContactForm extends Component {
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
             id={this.nameInputId}
-            // autoComplete="off"
+            autoComplete="off"
             required
           />
         </label>
@@ -76,7 +77,7 @@ class ContactForm extends Component {
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
             id={this.numberInputId}
-            // autoComplete="off"
+            autoComplete="off"
             required
           />
         </label>

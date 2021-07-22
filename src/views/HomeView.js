@@ -1,25 +1,14 @@
 import React from "react";
-
-const styles = {
-  container: {
-    minHeight: "calc(100vh - 50px)",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  title: {
-    fontWeight: 500,
-    fontSize: 48,
-    textAlign: "center",
-  },
-};
+import "../styles/home.scss";
 
 const HomeView = () => (
-  <div style={styles.container}>
-    <h1 style={styles.title}>
-      Приветственная страница нашего сервиса{" "}
+  <div className="container">
+    <h1 className="title">
+      Hi! That's a phonebook.
+      <br />
+      Here you can manipulate your contacts.{" "}
       <span role="img" aria-label="Иконка приветствия">
-        💁‍♀️
+        📕📞
       </span>
     </h1>
   </div>

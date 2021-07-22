@@ -1,10 +1,12 @@
 import React, { Component, Suspense, lazy } from "react";
-import AppBar from "./components/AppBar";
-import { Route, Switch } from "react-router-dom";
+import AppBar from "./components/AppBar/";
+import { Switch } from "react-router-dom";
 import Container from "./components/Container";
 import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
 import { authOperations } from "./redux/auth";
+import PublicRoute from "./components/PublicRoute/";
+import PrivateRoute from "./components/PrivateRoute/";
 
 const HomeView = lazy(() => import("./views/HomeView"));
 const ContactsListView = lazy(() => import("./views/ContactsListView"));
@@ -34,23 +36,32 @@ class App extends Component {
           }
         >
           <Switch>
-            <Route exact path="/" component={HomeView} />
-            <Route exact path="/contacts-list" component={ContactsListView} />
-            <Route exact path="/contacts-add" component={AddContactsView} />
-            <Route path="/register" component={RegisterView} />
-            <Route path="/login" component={LoginView} />
-            <Route component={HomeView} />
-            {/* <PublicRoute
-              path="/login"
-              restricted
-              redirectTo="/todos"
-              component={LoginView}
+            <PublicRoute exact path="/" component={HomeView} />
+            <PrivateRoute
+              exact
+              path="/contacts-list"
+              component={ContactsListView}
+              redirectTo="/login"
             />
             <PrivateRoute
-              path="/todos"
+              exact
+              path="/contacts-add"
+              component={AddContactsView}
               redirectTo="/login"
-              component={TodosView}
-            /> */}
+            />
+            <PublicRoute
+              path="/register"
+              component={RegisterView}
+              restricted
+              redirectTo="/"
+            />
+            <PublicRoute
+              path="/login"
+              component={LoginView}
+              restricted
+              redirectTo="/"
+            />
+            <PublicRoute component={HomeView} />
           </Switch>
         </Suspense>
       </Container>

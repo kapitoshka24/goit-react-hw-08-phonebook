@@ -32,11 +32,32 @@ header {
 
 .Container {
   max-width: 1440px;
-  width: 1280px;
+  min-width: 1040px;
   margin-left: auto;
   margin-right: auto;
   padding-left: 15px;
   padding-right: 15px;
+}
+
+.logout-btn {
+  background-color: #fff;
+  color: #4caf50;
+  border: 2px solid #4caf50;
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-weight: 600;
+  display: inline-block;
+  font-size: inherit;
+  transition-duration: 0.4s;
+  cursor: pointer;
+
+  min-width: 80px;
+  margin: auto;
+
+  &:hover {
+    background-color: #4caf50;
+    color: white;
+  }
 }
 
 .Loader {
@@ -74,12 +95,12 @@ form {
   & button {
     background-color: #fff;
     color: #4caf50;
-    border: 1px solid #4caf50;
+    border: 2px solid #4caf50;
     border-radius: 4px;
     padding: 10px 20px;
     display: inline-block;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 600;
     transition-duration: 0.4s;
     cursor: pointer;
 

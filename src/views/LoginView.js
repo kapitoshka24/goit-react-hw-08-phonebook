@@ -29,11 +29,11 @@ class LoginView extends Component {
     const { email, password } = this.state;
     return (
       <div className="centeredDiv">
-        <h1>Войдите в аккаунт</h1>
+        <h1>Please login</h1>
 
         <form onSubmit={this.handleSubmit}>
           <label>
-            Почта
+            Email
             <input
               type="email"
               name="email"
@@ -43,7 +43,7 @@ class LoginView extends Component {
           </label>
 
           <label>
-            Пароль
+            Password
             <input
               type="password"
               name="password"
@@ -52,7 +52,7 @@ class LoginView extends Component {
             />
           </label>
 
-          <button type="submit">Войти</button>
+          <button type="submit">Login</button>
         </form>
       </div>
     );

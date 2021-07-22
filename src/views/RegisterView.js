@@ -31,11 +31,11 @@ class RegisterView extends Component {
     const { name, email, password } = this.state;
     return (
       <div className="centeredDiv">
-        <h1>Страница регистрации</h1>
+        <h1>Register</h1>
 
         <form onSubmit={this.handleSubmit}>
           <label>
-            Имя
+            Name
             <input
               type="name"
               name="name"
@@ -45,7 +45,7 @@ class RegisterView extends Component {
           </label>
 
           <label>
-            Почта
+            Email
             <input
               type="email"
               name="email"
@@ -55,7 +55,7 @@ class RegisterView extends Component {
           </label>
 
           <label>
-            Пароль
+            Password
             <input
               type="password"
               name="password"
@@ -64,7 +64,7 @@ class RegisterView extends Component {
             />
           </label>
 
-          <button type="submit">Зарегистрироваться</button>
+          <button type="submit">Register</button>
         </form>
       </div>
     );

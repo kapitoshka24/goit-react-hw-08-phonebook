@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./Filter.scss";
+import "../../styles/filter.scss";
 
 const Filter = ({ value, onChangeFilter }) => (
   <label className="filter-label">
@@ -9,7 +9,7 @@ const Filter = ({ value, onChangeFilter }) => (
       className="filter-input"
       type="text"
       value={value}
-      onChange={onChangeFilter}
+      onChange={(e) => onChangeFilter(e.target.value)}
     />
   </label>
 );

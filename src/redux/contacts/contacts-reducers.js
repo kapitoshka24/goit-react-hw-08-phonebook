@@ -21,9 +21,9 @@ const loading = createReducer(false, {
   [contactsActions.fetchContactsSuccess]: () => false,
   [contactsActions.fetchContactsError]: () => false,
 
-  // [contactsActions.addContactRequest]: () => true,
-  // [contactsActions.addContactSuccess]: () => false,
-  // [contactsActions.addContactError]: () => false,
+  [contactsActions.addContactRequest]: () => true,
+  [contactsActions.addContactSuccess]: () => false,
+  [contactsActions.addContactError]: () => false,
 
   [contactsActions.deleteContactRequest]: () => true,
   [contactsActions.deleteContactSuccess]: () => false,

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { authActions } from "./";
+import { loginSuccess, registerSuccess, authError } from "../../ulits/pnotify";
 
 axios.defaults.baseURL = "https://connections-api.herokuapp.com/";
 
@@ -16,12 +17,13 @@ const register = (credentials) => async (dispatch) => {
   dispatch(authActions.registerRequest());
 
   try {
-    const response = await axios.post("/users/signup", credentials);
-
-    token.set(response.data.token);
-    dispatch(authActions.registerSuccess(response.data));
+    const { data } = await axios.post("/users/signup", credentials);
+    token.set(data.token);
+    dispatch(authActions.registerSuccess(data));
+    registerSuccess();
   } catch (error) {
     dispatch(authActions.registerError(error.message));
+    authError();
   }
 };
 
@@ -29,12 +31,13 @@ const logIn = (credentials) => async (dispatch) => {
   dispatch(authActions.loginRequest());
 
   try {
-    const response = await axios.post("/users/login", credentials);
-
-    token.set(response.data.token);
-    dispatch(authActions.loginSuccess(response.data));
+    const { data } = await axios.post("/users/login", credentials);
+    token.set(data.token);
+    dispatch(authActions.loginSuccess(data));
+    loginSuccess();
   } catch (error) {
     dispatch(authActions.loginError(error.message));
+    authError();
   }
 };
 
@@ -43,7 +46,6 @@ const logOut = () => async (dispatch) => {
 
   try {
     await axios.post("/users/logout");
-
     token.unset();
     dispatch(authActions.logoutSuccess());
   } catch (error) {
@@ -64,8 +66,8 @@ const getCurrentUser = () => async (dispatch, getState) => {
   dispatch(authActions.getCurrentUserRequest);
 
   try {
-    const response = await axios.get("users/current");
-    dispatch(authActions.getCurrentUserSuccess(response.data));
+    const { data } = await axios.get("users/current");
+    dispatch(authActions.getCurrentUserSuccess(data));
   } catch (error) {
     dispatch(authActions.getCurrentUserError(error.message));
   }
